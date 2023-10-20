@@ -5,46 +5,30 @@ import java.util.Scanner;
 public class Principal {
 
 	public static void main(String[] args) {
-		Scanner teclado = new Scanner(System.in);
-		int opcao;
 		Cofrinho cofrinho = new Cofrinho();
+		Menu menu = new Menu();
+		int opcao = menu.mostrarMenuPrincipal();
+		Scanner teclado = new Scanner(System.in);	
 		
-		System.out.println("COFRINHO");
-		System.out.println("1- Adicionar Moedas");
-		System.out.println("2- Remover Moedas");
-		System.out.println("3- Listar Moedas");
-		System.out.println("4- Total de Moedas em Real");
-		System.out.println("0- Encerrar");
-		opcao = teclado.nextInt();
-				
 		while(opcao != 0) {
 			switch(opcao) {
 			case 1:
-				int tipo = 0;
-				double valor = 0;
-				while(tipo > 3 || tipo <= 0) {
-					System.out.println("ADICIONAR MOEDA");
-					System.out.println("1- Real");
-					System.out.println("2- Dolar");
-					System.out.println("3- Euro");
-					tipo = teclado.nextInt();
-				}
+				int tipo = menu.mostrarMenuAdicionar("Adicionar Moeda");
 				System.out.println("Digite o valor.");
-				if(tipo == 1) {
-					valor = teclado.nextDouble();
+				double valor = menu.getTeclado().nextDouble();
+				
+				
+				if(tipo == menu.REAL) {
 					cofrinho.adicionar(new Real(valor));
-				}
-				if(tipo == 2) {
-					valor = teclado.nextDouble();
+				}else if(tipo == menu.DOLAR) {
 					cofrinho.adicionar(new Dolar(valor));
-				}
-				if(tipo == 3){
-					valor = teclado.nextDouble();
+				}else if(tipo == menu.EURO){
 					cofrinho.adicionar(new Euro(valor));
 				}
 				break;
 				
 			case 2:
+				int tipo = menu.mostrarMenuAdicionar("Remover Moeda");
 				int op = 0;
 				double valor2 = 0;
 				while(op > 3 || op <= 0) {
@@ -81,13 +65,7 @@ public class Principal {
 				System.out.println("OPCAO INVALIDA!");
 			}
 			
-			System.out.println("COFRINHO");
-			System.out.println("1- Adicionar Moedas");
-			System.out.println("2- Remover Moedas");
-			System.out.println("3- Listar Moedas");
-			System.out.println("4- Total de Moedas em Real");
-			System.out.println("0- Encerrar");
-			opcao = teclado.nextInt();
+			opcao = cofrinho.mostrarMenuPrincipal();
 		}
 		
 		System.out.println("Cofrinho Encerrado.");

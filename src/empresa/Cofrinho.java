@@ -1,6 +1,7 @@
 package empresa;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Cofrinho {
 	
@@ -35,4 +36,6 @@ public class Cofrinho {
 		}
 		System.out.printf("Total de Moedas Convertido em real: %.2f\n", total);
 	}
+	
+	
 }
